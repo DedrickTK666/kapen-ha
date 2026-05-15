@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,6 +23,8 @@
       --gold: #b89a6a;
       --text: #4f5f5c;
       --soft: rgba(255, 255, 255, 0.82);
+      --warning-bg: rgba(184,154,106,0.12);
+      --warning-border: rgba(184,154,106,0.35);
     }
 
     * {
@@ -38,12 +41,12 @@
       align-items: center;
       padding: 24px;
 
-      /* Fondo tipo mármol suave */
       background:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,0.9), transparent 28%),
         radial-gradient(circle at 80% 10%, rgba(184,154,106,0.18), transparent 26%),
         radial-gradient(circle at 30% 80%, rgba(72,108,104,0.16), transparent 28%),
         linear-gradient(135deg, #f8f6f1 0%, #ebe7df 45%, #f7f5ef 100%);
+
       overflow-x: hidden;
     }
 
@@ -77,10 +80,29 @@
     }
 
     .subtitle {
-      margin: 0 0 28px;
+      margin: 0 0 22px;
       font-size: 15px;
       line-height: 1.6;
       color: #6b6b6b;
+    }
+
+    .notice {
+      margin: 0 0 24px;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #6a5840;
+      animation: fadePulse 2.2s infinite;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      color: #8a6a37;
     }
 
     .btn {
@@ -106,6 +128,14 @@
 
     .btn:active {
       transform: scale(0.98);
+    }
+
+    .btn.disabled {
+      pointer-events: none;
+      opacity: 0.45;
+      background: linear-gradient(135deg, #8d8d8d, #707070);
+      box-shadow: none;
+      cursor: not-allowed;
     }
 
     .details {
@@ -146,6 +176,18 @@
       }
     }
 
+    @keyframes fadePulse {
+      0% {
+        opacity: 0.92;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.92;
+      }
+    }
+
     @media (max-width: 480px) {
       .card {
         padding: 30px 22px;
@@ -170,6 +212,7 @@
 
 <body>
   <main class="card">
+
     <img src="logo.svg" class="logo" alt="KAPEN-HA Restaurante Logo">
 
     <h1>KAPEN-HA</h1>
@@ -179,19 +222,18 @@
       Selecciona tu idioma
     </p>
 
-    <a class="btn"
-       href="kapen-ha_menu-es.pdf?v=1"
-       target="_blank"
-       rel="noopener noreferrer"
-       onclick="gtag('event', 'click_menu_espanol');">
+    <div class="notice">
+      <strong>Temporary Notice / Aviso Temporal</strong>
+
+      This digital menu is temporarily unavailable pending authorization release.<br>
+      El menú digital se encuentra temporalmente deshabilitado en espera de liberación administrativa.
+    </div>
+
+    <a class="btn disabled">
       🇲🇽 Menú Español
     </a>
 
-    <a class="btn"
-       href="kapen-ha_menu-en.pdf?v=1"
-       target="_blank"
-       rel="noopener noreferrer"
-       onclick="gtag('event', 'click_menu_ingles');">
+    <a class="btn disabled">
       🇺🇸 English Menu
     </a>
 
@@ -203,6 +245,8 @@
       Updated May 2026<br>
       Service subject to availability
     </div>
+
   </main>
 </body>
 </html>
+```
